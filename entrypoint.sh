@@ -2,10 +2,6 @@
 
 set -e
 source "/opt/ros/$ROS_DISTRO/setup.bash"
-env
-
-echo "Hello $1"
-echo "Hello $2"
 
 mkdir -p /home/ws/src
 cp -r "$GITHUB_WORKSPACE" /home/ws/src
@@ -15,5 +11,5 @@ colcon build
 
 source install/setup.bash
 
-# ros2 launch ace_scenario_bring_up juggling_bring_up.py
-ros2 run bullet_simulation full_simulator 
+echo "Running: $1 $2"
+ros2 run $1 $2 
