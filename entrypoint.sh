@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh -l
 
 set -e
 source "/opt/ros/$ROS_DISTRO/setup.bash"
@@ -14,4 +14,5 @@ colcon build
 
 source install/setup.bash
 
-ros2 launch ace_scenario_bring_up juggling_bring_up.py
+# ros2 launch ace_scenario_bring_up juggling_bring_up.py
+ros2 run bullet_simulation full_simulator 
