@@ -29,6 +29,7 @@ RUN pip3 install ipympl
 RUN pip3 install pyswarms
 RUN pip3 install nodejs
 RUN pip3 install jupyter
+RUN pip3 install pygments==2.4.1
 
 COPY entrypoint.sh /entrypoint.sh
 
