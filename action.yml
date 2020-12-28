@@ -1,0 +1,16 @@
+name: 'ROS 2 launchfile test'
+author: 'Guillem Torrente (tmguillem)'
+description: 'Github Action that executes a ROS 2 launchfile and verifies that specific topics are being published'
+branding:
+  icon: 'activity'  
+  color: 'black'
+inputs:
+  source:
+    description: 'Source folder to check formatting'
+    required: false
+    default: '.'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.source }}
