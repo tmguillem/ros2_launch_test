@@ -3,9 +3,14 @@
 set -e
 source "/opt/ros/$ROS_DISTRO/setup.bash"
 
+sh -c "echo $*"
+
 mkdir -p /home/ws/src
 cp -r "$GITHUB_WORKSPACE" /home/ws/src
 
 cd /home/ws
 colcon build
 
+source install/setup.bash
+
+# ros2 launch ace_scenario_bring_up juggling_bring_up.py

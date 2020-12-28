@@ -5,12 +5,17 @@ branding:
   icon: 'activity'  
   color: 'black'
 inputs:
-  source:
-    description: 'Source folder to check formatting'
-    required: false
-    default: '.'
+  package:
+    description: 'Package name where the launchfile is located. E.g. my_package'
+    required: true
+
+  launchfile:
+    description: 'Name of the launchfile within the package. E.g. my_launch_file.py'
+    required: true
+
 runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - ${{ inputs.source }}
+    - ${{ inputs.package }}
+    - ${{ inputs.launchfile }}
