@@ -1,4 +1,4 @@
-FROM ros:foxy
+FROM osrf/ros:foxy-desktop
 
 RUN apt-get update && apt-get install -y apt-transport-https
 
@@ -14,10 +14,6 @@ RUN apt-get install python3-pip -y \
     && pip3 install python-geoip \
     && pip3 install python-geoip-geolite2 \
     && apt-get install python2 -y
-
-RUN  apt-get install doxygen -y 
-
-RUN pip3 install Sphinx
 
 RUN pip3 install exhale \
     && pip3 install sphinx-rtd-theme \
