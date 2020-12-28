@@ -2,6 +2,7 @@
 
 set -e
 source "/opt/ros/$ROS_DISTRO/setup.bash"
+env
 
 echo "Hello $1"
 echo "Hello $2"
