@@ -1,6 +1,6 @@
 FROM ros:foxy
 
-COPY entrypoint.sh /entrypoint.sh
+RUN apt-get update && apt-get install -y apt-transport-https
 
 RUN apt-get update \
   && apt-get clean \
@@ -15,10 +15,7 @@ RUN apt-get install python3-pip -y \
     && pip3 install python-geoip-geolite2 \
     && apt-get install python2 -y
 
-
 RUN  apt-get install doxygen -y 
-
-
 
 RUN pip3 install Sphinx
 
@@ -36,5 +33,7 @@ RUN pip3 install ipympl
 RUN pip3 install pyswarms
 RUN pip3 install nodejs
 RUN pip3 install jupyter
+
+COPY entrypoint.sh /entrypoint.sh
 
 ENTRYPOINT ["/entrypoint.sh"]
