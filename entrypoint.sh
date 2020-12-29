@@ -21,10 +21,11 @@ source install/setup.bash
 
 # Run requested launchfile
 echo "Running in background: $INPUT_PACKAGE $INPUT_LAUNCHFILE"
-ros2 run $INPUT_PACKAGE $INPUT_LAUNCHFILE &
+ros2 run $INPUT_PACKAGE $INPUT_LAUNCHFILE &>/dev/null &
 
 # Record short rosbag (timeout after 5 seconds)
-ros2 bag record -a --include-hidden-topics -o health_check_bag &>/dev/null
+# Currently it is not possible to record individual hidden topics, so we need to record all.
+ros2 bag record -a --include-hidden-topics -o health_check_bag &>/dev/null &
 sleep 5 && kill -INT $!
 
 ros2 bag info health_check_bag
