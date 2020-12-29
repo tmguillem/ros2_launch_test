@@ -3,7 +3,8 @@
 set -e
 source "/opt/ros/$ROS_DISTRO/setup.bash"
 
-mkdir -p $GITHUB_WORKSPACE/ws/src; cd $GITHUB_WORKSPACE
+mkdir -p $GITHUB_WORKSPACE/ws/src
+cd $GITHUB_WORKSPACE
 
 # Move all files inside ws/src
 (shopt -s dotglob; cp -r !(ws) ws)
