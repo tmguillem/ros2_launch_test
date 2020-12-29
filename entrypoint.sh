@@ -27,10 +27,10 @@ sleep 5
 ros2 topic list
 timeout 5 ros2 topic hz /ace_bullet/ball/current_state
 
+echo $INPUT_LISTEN_TOPICS
 for word in $INPUT_LISTEN_TOPICS
 do
     echo $word
-    timeout 5 ros2 topic hz $word
 done
 
 # Record short rosbag (timeout after 5 seconds)
