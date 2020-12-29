@@ -4,18 +4,12 @@ set -e
 source "/opt/ros/$ROS_DISTRO/setup.bash"
 
 env
-echo "Parameters"
-echo $1 
-echo $2
-echo $3
-echo $4
-echo $5
 
 mkdir -p $GITHUB_WORKSPACE/ws/src
 cd $GITHUB_WORKSPACE
 
 # Move all files inside ws/src
-rsync -av --remove-source-files . ws/src --exclude ws
+rsync -aq --remove-source-files . ws/src --exclude ws
 
 cd ws
 
@@ -26,7 +20,11 @@ colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release
 
 source install/setup.bash
 
-echo "Running in background: $1 $2"
-ros2 run $1 $2 &
+echo "Running in background: $INPUT_PACKAGE $INPUT_LAUNCHFILE"
+ros2 run $INPUT_PACKAGE $INPUT_LAUNCHFILE &
 
-echo "Topic checks"
+echo "Checking topics:"
+for word in $INPUT_LISTEN_TOPICS
+do
+    echo $word
+done
