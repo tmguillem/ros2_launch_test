@@ -22,6 +22,7 @@ source install/setup.bash
 # Run requested launchfile
 echo "Running in background: $INPUT_PACKAGE $INPUT_LAUNCHFILE"
 ros2 run $INPUT_PACKAGE $INPUT_LAUNCHFILE &>/dev/null &
+sleep 10
 
 # Record short rosbag (timeout after 5 seconds)
 # Currently it is not possible to record individual hidden topics, so we need to record all.

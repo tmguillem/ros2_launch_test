@@ -23,7 +23,7 @@ RUN pip3 install exhale \
 
 RUN pip3 install numpy 
 RUN pip3 install scipy 
-RUN pip3 install pybullet 
+RUN pip3 install pybullet
 RUN pip3 install jupyterlab
 RUN pip3 install ipympl
 RUN pip3 install pyswarms
