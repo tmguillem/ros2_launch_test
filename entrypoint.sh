@@ -7,10 +7,7 @@ mkdir -p $GITHUB_WORKSPACE/ws/src
 cd $GITHUB_WORKSPACE
 
 # Move all files inside ws/src
-shopt -s dotglob
-cp -r !(ws) ws
-shopt -s extglob
-rm -v !(ws)
+rsync -av --remove-source-files . ws/src --exclude ws
 
 cd ws
 ls -la src
