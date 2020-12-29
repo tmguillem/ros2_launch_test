@@ -27,15 +27,12 @@ ros2 topic list --include-hidden-topics
 
 # Record short rosbag (timeout after 10 seconds)
 # Currently it is not possible to record individual hidden topics, so we need to record all.
-ros2 bag record -a --include-hidden-topics -o health_check_bag &>/dev/null &
+bag_name='health_check_bag'
+ros2 bag record -a --include-hidden-topics -o $bag_name &>/dev/null &
 sleep 10 && kill -INT $!
 
 echo "Recording complete"
-ros2 bag info health_check_bag
+ros2 bag info $bag_name
 
 # Check topics
-echo "Checking topics:"
-for word in $INPUT_LISTEN_TOPICS
-do
-    echo $word
-done
+python3 rosbag_health_checker --topic_checks $INPUT_LISTEN_TOPICS --bag_name $bag_name

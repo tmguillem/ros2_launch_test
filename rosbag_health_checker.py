@@ -1,0 +1,33 @@
+import yaml
+import os
+import argparse
+
+
+def main(bag, topics):
+    
+    stream = open(os.path.join(bag, "metadata.yaml"), 'r')
+    bag_metadata = yaml.load(stream)
+
+    topics_passed = 0
+    
+    for topic in bag_metadata["rosbag2_bagfile_information"]["topics_with_message_count"]:
+        if topic["topic_metadata"]["name"] in topics and topic["message_count"] > 0:
+            topics_passed += 1
+            print("Topic %s was published %d times" % (topic["topic_metadata"]["name"], topic["message_count"]))
+
+    if topics_passed == len(topics):
+        return 1
+    return 0
+            
+
+if __name__ == "__main__":
+
+    parser = argparse.ArgumentParser()
+
+    parser.add_argument("--bag_name", type=str, help="Full directory of the rosbag folder.")
+
+    parser.add_argument("--topic_checks", type=str, default="", nargs="+",
+                        help="List of topics to check the health status")
+
+    input_arguments = parser.parse_args()
+    main(bag=input_arguments.bag_name, topics=input_arguments.topic_checks)
