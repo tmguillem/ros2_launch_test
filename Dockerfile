@@ -1,12 +1,5 @@
 FROM osrf/ros:foxy-desktop
 
-ARG http_proxy_arg=http://43.196.177.37:8881
-ARG https_proxy_arg=http://43.196.177.37:8881
-ARG ROS_DOMAIN_ID_arg=0
-ENV http_proxy  ${http_proxy_arg}  
-ENV https_proxy ${https_proxy_arg}
-ENV ROS_DOMAIN_ID ${ROS_DOMAIN_ID_arg}
-
 RUN apt-get update && apt-get install -y apt-transport-https
 
 RUN apt-get update \
