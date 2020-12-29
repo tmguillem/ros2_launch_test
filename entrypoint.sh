@@ -22,6 +22,9 @@ source install/setup.bash
 # Run requested launchfile
 echo "Running in background: $INPUT_PACKAGE $INPUT_LAUNCHFILE"
 ros2 run $INPUT_PACKAGE $INPUT_LAUNCHFILE &>/dev/null &
+ros2 topic list
+timeout 5 ros2 topic hz /ace_bullet/ball/current_state
+
 for word in $INPUT_LISTEN_TOPICS
 do
     echo $word
