@@ -3,14 +3,14 @@
 set -e
 source "/opt/ros/$ROS_DISTRO/setup.bash"
 
-mkdir -p /home/ws/src
-cp -r "$GITHUB_WORKSPACE" /home/ws/src
+mkdir -p $GITHUB_WORKSPACE/ws/src
+(shopt -s dotglob; mv $GITHUB_WORKSPACE/* $GITHUB_WORKSPACE/ws/src/)
+cd $GITHUB_WORKSPACE/ws
+ls -la src
 
 # Set GUI_FLAG to False to be able to run the simulator in the container. TODO: pass this as an argument?
-ls /home/ws/src/$GITHUB_WORKSPACE
-sed -i 's/GUI_FLAG = True/GUI_FLAG = False/' /home/ws/src/$GITHUB_WORKSPACE/simulator/bullet_simulation/bullet_simulation/full_simulator.py
+sed -i 's/GUI_FLAG = True/GUI_FLAG = False/' src/simulator/bullet_simulation/bullet_simulation/full_simulator.py
 
-cd /home/ws
 colcon build
 
 source install/setup.bash
