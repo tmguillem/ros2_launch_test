@@ -6,11 +6,15 @@ branding:
   color: 'black'
 inputs:
   package:
-    description: 'Package name where the launchfile is located. E.g. my_package'
+    description: 'Package name where the launchfile is located. E.g.: my_package'
     required: true
 
   launchfile:
-    description: 'Name of the launchfile within the package. E.g. my_launch_file.py'
+    description: 'Name of the launchfile within the package. E.g.: my_launch_file.py'
+    required: true
+
+  listen_topics:
+    description: 'List of topics that will be verified. E.g.: /my_topic_1 /my_node/another_topic_2'
     required: true
 
 runs:
@@ -19,3 +23,4 @@ runs:
   args:
     - ${{ inputs.package }}
     - ${{ inputs.launchfile }}
+    - ${{ inputs.listen_topics }}

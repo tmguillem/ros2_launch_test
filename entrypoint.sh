@@ -3,6 +3,14 @@
 set -e
 source "/opt/ros/$ROS_DISTRO/setup.bash"
 
+env
+echo "Parameters"
+echo $1 
+echo $2
+echo $3
+echo $4
+echo $5
+
 mkdir -p $GITHUB_WORKSPACE/ws/src
 cd $GITHUB_WORKSPACE
 
@@ -18,5 +26,7 @@ colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release
 
 source install/setup.bash
 
-echo "Running: $1 $2"
-ros2 run $1 $2 
+echo "Running in background: $1 $2"
+ros2 run $1 $2 &
+
+echo "Topic checks"
