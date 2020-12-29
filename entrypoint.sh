@@ -3,9 +3,13 @@
 set -e
 source "/opt/ros/$ROS_DISTRO/setup.bash"
 
-mkdir -p $GITHUB_WORKSPACE/ws/src
-(shopt -s dotglob; mv $GITHUB_WORKSPACE/* $GITHUB_WORKSPACE/ws/src/)
-cd $GITHUB_WORKSPACE/ws
+mkdir -p $GITHUB_WORKSPACE/ws/src; cd $GITHUB_WORKSPACE
+
+# Move all files inside ws/src
+(shopt -s dotglob; cp -r !(ws) ws)
+(shopt -s extglob; shopt -s dotglob; rm -v !(ws))
+
+cd ws
 ls -la src
 
 # Set GUI_FLAG to False to be able to run the simulator in the container. TODO: pass this as an argument?
