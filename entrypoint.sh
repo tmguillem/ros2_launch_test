@@ -27,7 +27,7 @@ sleep 10
 # Record short rosbag (timeout after 5 seconds)
 # Currently it is not possible to record individual hidden topics, so we need to record all.
 ros2 bag record -a --include-hidden-topics -o health_check_bag &>/dev/null &
-sleep 10 && kill -INT $! &
+sleep 10 && kill -INT $!
 
 ros2 bag info health_check_bag
 
