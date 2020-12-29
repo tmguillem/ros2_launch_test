@@ -24,13 +24,13 @@ echo "Running in background: $INPUT_PACKAGE $INPUT_LAUNCHFILE"
 ros2 launch $INPUT_PACKAGE $INPUT_LAUNCHFILE &>/dev/null &
 
 ros2 topic list --include-hidden-topics
-timeout 5 ros2 topic hz /ace_bullet/ball/current_state
 
-# Record short rosbag (timeout after 5 seconds)
+# Record short rosbag (timeout after 10 seconds)
 # Currently it is not possible to record individual hidden topics, so we need to record all.
 ros2 bag record -a --include-hidden-topics -o health_check_bag &>/dev/null &
 sleep 10 && kill -INT $!
 
+echo "Recording complete"
 ros2 bag info health_check_bag
 
 # Check topics
