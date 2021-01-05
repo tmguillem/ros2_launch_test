@@ -1,6 +1,7 @@
 import yaml
 from yaml import CLoader as Loader
 import os
+import sys
 import argparse
 
 
@@ -31,4 +32,7 @@ if __name__ == "__main__":
                         help="List of topics to check the health status")
 
     input_arguments = parser.parse_args()
-    main(bag=input_arguments.bag_name, topics=input_arguments.topic_checks)
+    status = main(bag=input_arguments.bag_name, topics=input_arguments.topic_checks)
+    
+    print("Check script exiting with status: ", status)
+    sys.exit(status)
