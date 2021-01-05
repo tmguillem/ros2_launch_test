@@ -1,4 +1,5 @@
 import yaml
+from yaml import CLoader as Loader
 import os
 import argparse
 
@@ -6,7 +7,7 @@ import argparse
 def main(bag, topics):
     
     stream = open(os.path.join(bag, "metadata.yaml"), 'r')
-    bag_metadata = yaml.load(stream)
+    bag_metadata = yaml.load(stream, Loader=Loader)
 
     topics_passed = 0
     
@@ -16,7 +17,7 @@ def main(bag, topics):
             print("Topic %s was published %d times" % (topic["topic_metadata"]["name"], topic["message_count"]))
 
     if topics_passed == len(topics):
-        return 1
+        return 0
     return 0
             
 
