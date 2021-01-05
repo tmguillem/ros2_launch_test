@@ -36,7 +36,7 @@ ros2 bag info $bag_name
 
 # Check topics
 if python3 /rosbag_health_checker.py --topic_checks $INPUT_LISTEN_TOPICS --bag_name $bag_name; then
-    echo "The ROS2 health checker script returned status 1."
+    echo "The ROS2 health checker script returned status 0."
 else
     echo "The ROS2 health checker script did not pass all tests."
     exit 64
