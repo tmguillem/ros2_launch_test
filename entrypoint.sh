@@ -35,4 +35,4 @@ echo "Recording complete"
 ros2 bag info $bag_name
 
 # Check topics
-python3 ./rosbag_health_checker.py --topic_checks $INPUT_LISTEN_TOPICS --bag_name $bag_name
+python3 /rosbag_health_checker.py --topic_checks $INPUT_LISTEN_TOPICS --bag_name $bag_name
