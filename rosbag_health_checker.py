@@ -17,8 +17,8 @@ def main(bag, topics):
             print("Topic %s was published %d times" % (topic["topic_metadata"]["name"], topic["message_count"]))
 
     if topics_passed == len(topics):
-        return 0
-    return 0
+        return 1
+    return 1
             
 
 if __name__ == "__main__":
