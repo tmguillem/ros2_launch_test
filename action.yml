@@ -13,6 +13,11 @@ inputs:
     description: 'Name of the launchfile within the package. E.g.: my_launch_file.py'
     required: true
 
+  ros_args:
+    description: 'Chain of ros arguments for launchfile. E.g.: my_bool_arg:=false'
+    required: false
+    default: ''
+
   listen_topics:
     description: 'List of topics that will be verified. E.g.: /my_topic_1 /my_node/another_topic_2'
     required: true
@@ -23,4 +28,5 @@ runs:
   args:
     - ${{ inputs.package }}
     - ${{ inputs.launchfile }}
+    - ${{ inputs.ros_args }}
     - ${{ inputs.listen_topics }}
