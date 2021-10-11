@@ -7,7 +7,7 @@ cd "$GITHUB_WORKSPACE"/ros_ws
 
 # Compile and source workspace packages
 source "/opt/ros/$ROS_DISTRO/setup.bash"
-colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release
+colcon build --symlink-install --cmake-clean-cache --cmake-args -DCMAKE_BUILD_TYPE=Release
 source install/setup.bash
 
 # Run requested launchfile
