@@ -3,13 +3,14 @@
 set -e
 env
 
-project_name=$(basename `git rev-parse --show-toplevel`)
+# project_name=$(basename `git rev-parse --show-toplevel`)
 
-mkdir -p $GITHUB_WORKSPACE/ws/src/$project_name
-cd $GITHUB_WORKSPACE
+# mkdir -p $GITHUB_WORKSPACE/ws/src/$project_name
+echo "$GITHUB_WORKSPACE"
+cd "$GITHUB_WORKSPACE"/ros_ws
 
 # Move all files inside ws/src
-rsync -aq --remove-source-files . ws/src/$project_name --exclude ws
+# rsync -aq --remove-source-files . ws/src/$project_name --exclude ws
 
 cd ws
 
@@ -20,7 +21,7 @@ source install/setup.bash
 
 # Run requested launchfile
 echo "Running in background: $INPUT_PACKAGE $INPUT_LAUNCHFILE"
-ros2 launch $INPUT_PACKAGE $INPUT_LAUNCHFILE $INPUT_ROS_ARGS &>/dev/null &
+ros2 launch "$INPUT_PACKAGE" "$INPUT_LAUNCHFILE" "$INPUT_ROS_ARGS" &>/dev/null &
 
 ros2 topic list --include-hidden-topics
 
@@ -34,7 +35,7 @@ echo "Recording complete"
 ros2 bag info $bag_name
 
 # Check topics
-if python3 /rosbag_health_checker.py --topic_checks $INPUT_LISTEN_TOPICS --bag_name $bag_name; then
+if python3 /rosbag_health_checker.py --topic_checks "$INPUT_LISTEN_TOPICS" --bag_name $bag_name; then
     echo "The ROS2 health checker script returned status 0."
 else
     echo "The ROS2 health checker script did not pass all tests."
