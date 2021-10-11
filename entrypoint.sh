@@ -12,7 +12,7 @@ cd "$GITHUB_WORKSPACE"/ros_ws
 # Move all files inside ws/src
 # rsync -aq --remove-source-files . ws/src/$project_name --exclude ws
 
-cd ws
+# cd ws
 
 # Compile and source workspace packages
 source "/opt/ros/$ROS_DISTRO/setup.bash"
