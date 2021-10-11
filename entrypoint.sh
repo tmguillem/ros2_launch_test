@@ -3,24 +3,16 @@
 set -e
 env
 
-project_name=$(basename `git rev-parse --show-toplevel`)
-
-mkdir -p $GITHUB_WORKSPACE/ws/src/$project_name
-cd $GITHUB_WORKSPACE
-
-# Move all files inside ws/src
-rsync -aq --remove-source-files . ws/src/$project_name --exclude ws
-
-cd ws
+cd "$GITHUB_WORKSPACE"/ros_ws
 
 # Compile and source workspace packages
 source "/opt/ros/$ROS_DISTRO/setup.bash"
-colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release
+colcon build --symlink-install --cmake-clean-cache --cmake-args -DCMAKE_BUILD_TYPE=Release
 source install/setup.bash
 
 # Run requested launchfile
 echo "Running in background: $INPUT_PACKAGE $INPUT_LAUNCHFILE"
-ros2 launch $INPUT_PACKAGE $INPUT_LAUNCHFILE $INPUT_ROS_ARGS &>/dev/null &
+ros2 launch "$INPUT_PACKAGE" "$INPUT_LAUNCHFILE" "$INPUT_ROS_ARGS" &>/dev/null &
 
 ros2 topic list --include-hidden-topics
 
