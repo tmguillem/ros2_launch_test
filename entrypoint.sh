@@ -3,7 +3,8 @@
 set -e
 env
 
-echo "$GITHUB_WORKSPACE"
+ls /
+
 cd "$GITHUB_WORKSPACE"/ros_ws
 
 # Compile and source workspace packages
